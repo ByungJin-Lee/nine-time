@@ -7,7 +7,7 @@ interface BaseTypography {
 }
 
 export default function BaseTypography({children}: BaseTypography) {
-  return <Text children={children} />;
+  return <TextWrapper children={children} />;
 }
 
-const Wrapper = styled(Text)``;
+const TextWrapper = styled(Text)``;
