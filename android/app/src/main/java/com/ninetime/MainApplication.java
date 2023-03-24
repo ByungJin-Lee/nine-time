@@ -1,6 +1,16 @@
 package com.ninetime;
 
+import static com.ninetime.headless.ScreenStatusChangReceiver.SCREEN_STATUS_KEY;
+
 import android.app.Application;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -8,6 +18,9 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
+import com.ninetime.headless.NineTimeTaskService;
+import com.ninetime.headless.ScreenStatusChangReceiver;
+
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -58,5 +71,23 @@ public class MainApplication extends Application implements ReactApplication {
       DefaultNewArchitectureEntryPoint.load();
     }
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
+    // Start NineTime Task Service
+    initializeNineTimeService();
+  }
+
+  private void initializeNineTimeService() {
+      Intent service = new Intent(this, NineTimeTaskService.class);
+      Bundle bundle = new Bundle();
+
+      bundle.putBoolean(SCREEN_STATUS_KEY, true);
+      service.putExtras(bundle);
+
+      IntentFilter intentFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+      intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
+
+      registerReceiver(new ScreenStatusChangReceiver(), intentFilter);
+
+      this.startService(service);
+
   }
 }
