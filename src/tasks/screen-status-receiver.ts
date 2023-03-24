@@ -1,3 +1,7 @@
-export default async function (data: any) {
-  console.log(data);
+interface ScreenStatusMetadata {
+  screenWaked: boolean;
+}
+
+export default async function ({screenWaked}: ScreenStatusMetadata) {
+  console.log('status', screenWaked);
 }
