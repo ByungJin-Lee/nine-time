@@ -1,0 +1,1 @@
+export const NINE_TIME_TASK_NAME = 'NINE_TIME_TASK_SERVICE';
