@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {Button, SafeAreaView} from 'react-native';
 
 import {styled} from '@modules/styled';
 import AlarmUtils from '~/libs/alarm-utils';
@@ -8,11 +8,14 @@ import Typography from '~/common/components/Typography';
 import '~/tasks/setup';
 
 export default function App(): JSX.Element {
-  AlarmUtils.reserveAlarm(10);
+  const handleClick = () => {
+    AlarmUtils.reserveAlarm(10);
+  };
 
   return (
     <AppContainer>
       <Typography>hello</Typography>
+      <Button onPress={handleClick} title="hello" />
     </AppContainer>
   );
 }
