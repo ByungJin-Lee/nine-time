@@ -3,9 +3,12 @@ package com.ninetime;
 import static com.ninetime.headless.ScreenStatusChangReceiver.SCREEN_STATUS_KEY;
 
 import android.app.Application;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,12 +18,15 @@ import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
+import com.facebook.react.common.LongArray;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import com.ninetime.headless.NineTimeTaskService;
 import com.ninetime.headless.ScreenStatusChangReceiver;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -37,7 +43,8 @@ public class MainApplication extends Application implements ReactApplication {
           @SuppressWarnings("UnnecessaryLocalVariable")
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
-          // packages.add(new MyReactNativePackage());
+            // Add Alarm Native Module
+           packages.add(new AlarmPackage());
           return packages;
         }
 
@@ -73,6 +80,8 @@ public class MainApplication extends Application implements ReactApplication {
     ReactNativeFlipper.initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
     // Start NineTime Task Service
     initializeNineTimeService();
+
+    initializeNotification();
   }
 
   private void initializeNineTimeService() {
@@ -88,6 +97,20 @@ public class MainApplication extends Application implements ReactApplication {
       registerReceiver(new ScreenStatusChangReceiver(), intentFilter);
 
       this.startService(service);
+  }
 
+  private void initializeNotification() {
+      NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+      if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+          NotificationChannel channel = new NotificationChannel("NINE_TIME_NOTIFICATION_CHANNEL", "9Time", NotificationManager.IMPORTANCE_DEFAULT);
+          // 채널에 대한 각종 설정(불빛, 진동 등)
+          channel.enableLights(true);
+          channel.setLightColor(Color.BLUE);
+          channel.enableVibration(true);
+          channel.setVibrationPattern(new long[] {100L, 200L, 300L});
+          // 시스템에 notificationChannel 등록
+          manager.createNotificationChannel(channel);
+      }
   }
 }
