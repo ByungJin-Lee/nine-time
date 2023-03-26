@@ -2,7 +2,8 @@ import {Button, View} from 'react-native';
 
 import {styled} from '@modules/styled';
 
-import AlarmScheduler from '~/libs/alarm-scheduler.native';
+import AlarmScheduler from '@modules/alarm-scheduler.native';
+import {useDatabase} from '~/context/database-context';
 
 export default function HomeScreen() {
   const handleClick = () => {

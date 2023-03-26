@@ -1,6 +1,7 @@
 package com.ninetime;
 
 import static com.ninetime.headless.ScreenStatusChangReceiver.SCREEN_STATUS_KEY;
+// import org.pgsqlite.SQLitePluginPackage;
 
 import android.app.Application;
 import android.app.NotificationChannel;
@@ -45,6 +46,7 @@ public class MainApplication extends Application implements ReactApplication {
           // Packages that cannot be autolinked yet can be added manually here, for example:
             // Add Alarm Native Module
            packages.add(new AlarmPackage());
+          //  packages.add(new SQLitePluginPackage());
           return packages;
         }
 
