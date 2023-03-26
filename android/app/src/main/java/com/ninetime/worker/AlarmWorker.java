@@ -1,9 +1,11 @@
 package com.ninetime.worker;
 
+import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
@@ -46,18 +48,28 @@ public class AlarmWorker extends Worker {
 //
 //        ((NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE)).notify(0, notification);
 
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent intent = new Intent(getApplicationContext() ,MainActivity.class);
-                getApplicationContext().startActivity(
-                        intent
-                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY)
-                                .addCategory(Intent.CATEGORY_LAUNCHER)
-                );
-            }
-        }, 0);
+        // Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY)
+//                .setAction(Intent.ACTION_SCREEN_ON)
+//                .addCategory(Intent.CATEGORY_LAUNCHER)
+                .setData(Uri.parse("nine-time://alert"));
+        getApplicationContext().startActivity(intent);
+
+//        Handler handler = new Handler(Looper.getMainLooper());
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                Intent intent = new Intent(Intent.ACTION_VIEW);
+//                intent
+//                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY)
+//                        .addCategory(Intent.CATEGORY_LAUNCHER)
+//                        .setData(Uri.parse("nine-time://alert"));
+//                getApplicationContext().startActivity(intent);
+//            }
+//        }, 0);
         return Result.success();
     }
 }
