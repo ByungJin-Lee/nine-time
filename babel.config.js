@@ -20,6 +20,7 @@ module.exports = {
           '~': './src',
           '@modules': './src/common/modules',
           '@common': './src/common',
+          '@assets': './src/assets',
         },
       },
     ],
