@@ -1,10 +1,10 @@
 import {NativeModules} from 'react-native';
 
-const AlarmUtils = <AlarmUtils>NativeModules.Alarm;
+const AlarmScheduler = <AlarmScheduler>NativeModules.Alarm;
 
-interface AlarmUtils {
+interface AlarmScheduler {
   removeReservedAlarm(): void;
   reserveAlarm(afterSeconds: number): void;
 }
 
-export default AlarmUtils;
+export default AlarmScheduler;

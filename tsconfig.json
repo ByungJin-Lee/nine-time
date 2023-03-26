@@ -11,7 +11,14 @@
       ],
       "@modules/*": [
         "common/modules/*"
+      ],
+      "@assets/*": [
+        "assets/*"
       ]
     },
+    "typeRoots": [
+      "node_modules/@types",
+      "./types"
+    ]
   }
 }
