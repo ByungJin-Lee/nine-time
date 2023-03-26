@@ -1,9 +1,11 @@
-import SQLite, {
-  DatabaseParams,
-  SQLiteDatabase,
-} from 'react-native-sqlite-storage';
+import SQLite, {DatabaseParams} from 'react-native-sqlite-storage';
 
-interface Database extends SQLiteDatabase {}
+// Enable promise
+// SQLite.enablePromise(true);
+
+interface Database {
+  executeQuery(query: string): Promise<unknown>;
+}
 
 let db: Database | null = null;
 
@@ -15,9 +17,20 @@ export function database(): Database {
   return db;
 }
 
-function build() {
-  return SQLite.openDatabase(databaseParams, handleSuccess, handleError);
+function build(): Database {
+  const _db = SQLite.openDatabase(databaseParams, handleSuccess, handleError);
+  return {
+    executeQuery(query: string) {
+      return new Promise(resolve => {
+        _db.executeSql(query, [], ({rows}: any) => {
+          resolve(rows.raw());
+        });
+      });
+    },
+  };
 }
+
+// #region Configuration
 
 const databaseParams: DatabaseParams = {
   name: 'nine-time.db',
@@ -33,5 +46,7 @@ const handleSuccess = () => {
 const handleError = (error: any) => {
   console.log(error);
 };
+
+// #endregion
 
 export type {Database};
