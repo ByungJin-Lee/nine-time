@@ -1,23 +1,15 @@
 import React from 'react';
-import {Button, SafeAreaView} from 'react-native';
 
-import {styled} from '@modules/styled';
-import AlarmUtils from '~/libs/alarm-utils';
+// import AlarmUtils from '~/libs/alarm-utils';
 
-import Typography from '~/common/components/Typography';
+import AppContainer from './AppContainer';
 import '~/tasks/setup';
+import {AppNavigator} from '~/screens/app';
 
 export default function App(): JSX.Element {
-  const handleClick = () => {
-    AlarmUtils.reserveAlarm(10);
-  };
-
   return (
     <AppContainer>
-      <Typography>hello</Typography>
-      <Button onPress={handleClick} title="hello" />
+      <AppNavigator />
     </AppContainer>
   );
 }
-
-const AppContainer = styled(SafeAreaView)``;
