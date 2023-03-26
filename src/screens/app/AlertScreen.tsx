@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 
-import SoundPlayer from '~/libs/sound-player.native';
-import {wakeScreen} from '~/libs/wake-screen.native';
+import SoundPlayer from '@modules/sound-player.native';
+import {wakeScreen} from '@modules/wake-screen.native';
 
 export default function AlertScreen() {
   useEffect(() => {
