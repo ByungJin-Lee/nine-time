@@ -2,7 +2,7 @@ import {ReactNode} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {Fallback} from '~/common/components/Fallback';
-import {DatabaseProvider} from '~/context/database-context';
+import {DBServiceProvider} from '~/context/database-service-context';
 import {linking} from '@modules/deep-link';
 
 interface AppContainerProps {
@@ -12,7 +12,7 @@ interface AppContainerProps {
 export default function AppContainer({children}: AppContainerProps) {
   return (
     <NavigationContainer linking={linking} fallback={<Fallback />}>
-      <DatabaseProvider>{children}</DatabaseProvider>
+      <DBServiceProvider>{children}</DBServiceProvider>
     </NavigationContainer>
   );
 }
