@@ -2,7 +2,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import {APP_SCREEN} from '~/screens/screen-key';
 import HomeScreen from './home-screen';
-import AlertScreen from './alert-screen';
+import {AlertScreen} from './AlertScreen';
 import {SplashScreen} from './SplashScreen';
 
 const Stack = createNativeStackNavigator();
