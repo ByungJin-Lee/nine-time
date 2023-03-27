@@ -2,12 +2,17 @@ import {useEffect} from 'react';
 
 import SoundPlayer from '@modules/sound-player.android';
 import {wakeScreen} from '@modules/wake-screen.android';
+import {useFocusEffect} from '@react-navigation/native';
 
 export default function AlertScreen() {
   useEffect(() => {
-    wakeScreen();
-    SoundPlayer.play('iphone_original', 'mp3');
+    // SoundPlayer.play('iphone_original', 'mp3');
   }, []);
+
+  useFocusEffect(() => {
+    wakeScreen();
+    console.log('focused');
+  });
 
   return <></>;
 }

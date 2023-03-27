@@ -1,3 +1,3 @@
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 
-export {styled};
+export {styled, ThemeProvider};
