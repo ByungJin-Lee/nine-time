@@ -1,7 +1,7 @@
 import {Button, View} from 'react-native';
 
 import {styled} from '@modules/styled';
-import AlarmScheduler from '@modules/alarm-scheduler.native';
+import AlarmScheduler from '@modules/alarm-scheduler.android';
 
 import {useDBService} from '~/context/database-service-context';
 
