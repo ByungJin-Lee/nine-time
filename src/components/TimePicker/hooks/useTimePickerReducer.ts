@@ -4,7 +4,7 @@ import {TimeHM} from '../time-picker.d';
 
 const defaultTime: TimeHM = {
   isAM: true,
-  hour: 1,
+  hour: 0,
   minute: 0,
 };
 

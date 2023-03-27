@@ -41,7 +41,7 @@ export default function TimePickerWheelContent({
         onChange={handleDayKind}
       />
       <NumberWheelPicker
-        selectIndex={time.hour - 1}
+        selectIndex={time.hour}
         options={HOUR_COLLECTION}
         toStr={hourToStr}
         onChange={handleHour}

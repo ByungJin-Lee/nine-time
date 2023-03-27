@@ -1,7 +1,5 @@
 // 1~12 까지 숫자 모음
-export const HOUR_COLLECTION = new Array<number>(12)
-  .fill(0)
-  .map((_, i) => i + 1);
+export const HOUR_COLLECTION = new Array<number>(12).fill(0).map((_, i) => i);
 
 // 10 분 단위의 숫자 모음 (00~50)
 export const MINUTE_COLLECTION = new Array<number>(6)
