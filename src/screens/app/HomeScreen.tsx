@@ -5,16 +5,17 @@ import AlarmScheduler from '@modules/alarm-scheduler.android';
 import {useState} from 'react';
 import TimePicker from '~/components/TimePicker';
 
-// import {useDBService} from '~/context/database-service-context';
+import {useDBService} from '~/context/database-service-context';
 
 export default function HomeScreen() {
-  // const {screenHistory} = useDBService();
+  const {screenHistory} = useDBService();
 
   const [active, setActive] = useState(false);
 
   const handleClick = () => {
     // AlarmScheduler.reserveAlarm(10);
     setActive(p => !p);
+    screenHistory.readAll().then(console.log);
   };
 
   return (
