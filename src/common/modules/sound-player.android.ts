@@ -4,6 +4,9 @@ const SoundPlayer = {
   play(sourceUrl: string, type: string) {
     SPlayer.playSoundFile(sourceUrl, type);
   },
+  stop() {
+    SPlayer.stop();
+  },
 };
 
 export default SoundPlayer;

@@ -22,9 +22,14 @@ function build(): Database {
   return {
     executeQuery(query: string) {
       return new Promise(resolve => {
-        _db.executeSql(query, [], ({rows}: any) => {
-          resolve(rows.raw());
-        });
+        _db.executeSql(
+          query,
+          [],
+          ({rows}: any) => {
+            resolve(rows.raw());
+          },
+          handleError,
+        );
       });
     },
   };
@@ -33,10 +38,10 @@ function build(): Database {
 // #region Configuration
 
 const databaseParams: DatabaseParams = {
-  name: 'nine-time.db',
+  name: 'nineTime.db',
   location: 'default',
   // createFromLocation: 2,
-  createFromLocation: '~www/nine-time.db',
+  createFromLocation: '~www/nineTime.db',
 };
 
 const handleSuccess = () => {
